@@ -15,7 +15,21 @@ def joltage_part_one(batteries: str):
     return max_joltage
 
 def joltage_part_two(batteries: str) -> int:
-    return 0
+    n = len(batteries)
+    l, r = 0, 12
+    ans: list[int] = []
+    while r > 0:
+        max_n, max_i = -1, -1
+        max_i = n - r + 1
+        for i in range(l, max_i):
+            num = int(batteries[i])
+            if num > max_n:
+                max_n = num
+                max_i = i
+        l = max_i + 1
+        r -= 1
+        ans.append(max_n)
+    return int("".join(map(str, ans)))
 
 def main():
     part_one: list[int] = []
